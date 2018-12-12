@@ -1,0 +1,67 @@
+<odoo>
+    <data>
+        <record id="elec_bill_view" model="ir.ui.view">
+            <field name="name">electric.meter.bill.list</field>
+            <field name="model">electric.meter</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--<field name="id" />-->
+                    <field name="elec_id"/>
+                    <field name="elec_current" />
+                    <field name="elec_voltage" />
+                    <field name="elec_electricity" />
+                    <field name="elec_str" />
+                </tree>
+            </field>
+        </record>
+        <record id="elec_bill_form" model="ir.ui.view">
+            <field name="name">electric.meter.bill.form</field>
+            <field name="model">electric.meter</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <!--<field name="id" />-->
+                            <field name="elec_id"/>
+                            <field name="elec_current" />
+                            <field name="elec_voltage" />
+                            <field name="elec_electricity" />
+                            <field name="elec_str" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="electric_meter_graph_date" model="ir.ui.view">
+            <field name="name">electric.meter.graph</field>
+            <field name="model">electric.meter</field>
+            <field name="arch" type="xml">
+                <graph string="Account Statistics" type="line" stacked="True">
+                    <field name="elec_str"/>
+                    <!--measure-->
+                    <field name="elec_current" type='measure'/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="electric_meter_pivot_date" model="ir.ui.view">
+            <field name="name">electric.meter.pivot</field>
+            <field name="model">electric.meter</field>
+            <field name="arch" type="xml">
+                <graph string="Account Statistics Pivot" type="line" stacked="True">
+                    <field name="elec_str"/>
+                    <!--measure-->
+                    <field name="elec_current" type='measure'/>
+                </graph>
+            </field>
+        </record>
+
+
+        <record id="elec_bill" model="ir.actions.act_window">
+            <field name="name">elec-meter</field>
+            <field name="res_model">electric.meter</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+        </record>
+        <menuitem id="menu_elec_bill" name="electric-meter" parent="menu_elec_root" action="elec_bill" groups="base.group_user"></menuitem>
+    </data>
+</odoo>
